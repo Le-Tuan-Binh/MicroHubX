@@ -16,11 +16,12 @@ public class StatisticController {
 
     @PostMapping
     public StatisticDTO addStatistic(@RequestBody StatisticDTO statisticDTO) {
-        try {
+        // Try to Fallback in AccountService
+        /* try {
             Thread.sleep(10000);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } */
         statisticService.addStatistic(statisticDTO);
         return statisticDTO;
     }
