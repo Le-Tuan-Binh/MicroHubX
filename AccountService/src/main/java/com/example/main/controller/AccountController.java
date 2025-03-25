@@ -1,7 +1,7 @@
 package com.example.main.controller;
 
-import com.example.main.client.NotificationService;
-import com.example.main.client.StatisticService;
+import com.example.main.client.INotificationService;
+import com.example.main.client.IStatisticService;
 import com.example.main.dto.AccountDTO;
 import com.example.main.dto.MessageDTO;
 import com.example.main.dto.StatisticDTO;
@@ -18,10 +18,10 @@ import java.util.Optional;
 @RequestMapping("/accounts")
 public class AccountController {
     private final AccountService accountService;
-    private final StatisticService statisticService;
-    private final NotificationService notificationService;
+    private final IStatisticService statisticService;
+    private final INotificationService notificationService;
 
-    public AccountController(AccountService accountService, StatisticService statisticService, NotificationService notificationService) {
+    public AccountController(AccountService accountService, IStatisticService statisticService, INotificationService notificationService) {
         this.accountService = accountService;
         this.statisticService = statisticService;
         this.notificationService = notificationService;

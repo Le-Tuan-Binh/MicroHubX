@@ -16,6 +16,11 @@ public class StatisticController {
 
     @PostMapping
     public StatisticDTO addStatistic(@RequestBody StatisticDTO statisticDTO) {
+        try {
+            Thread.sleep(10000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         statisticService.addStatistic(statisticDTO);
         return statisticDTO;
     }
