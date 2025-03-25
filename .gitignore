@@ -1,1 +1,2 @@
-application.properties
+ConfigService/src/main/resources/shared/*.properties
+!ConfigService/src/main/resources/shared/*example.properties
