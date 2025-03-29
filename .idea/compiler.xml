@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ConfigService" />
         <module name="DiscoveryService" />
         <module name="AccountService" />
-        <module name="ConfigService" />
+        <module name="GatewayService" />
       </profile>
       <profile name="Annotation profile for NotificationService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -28,6 +29,7 @@
       <module name="AccountService" options="-parameters" />
       <module name="ConfigService" options="-parameters" />
       <module name="DiscoveryService" options="-parameters" />
+      <module name="GatewayService" options="-parameters" />
       <module name="NotificationService" options="-parameters" />
       <module name="StatisticService" options="-parameters" />
     </option>

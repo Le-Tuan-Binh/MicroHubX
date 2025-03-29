@@ -50,7 +50,7 @@ public class AccountController {
                 
                 If you did not create this account, please contact our support team immediately.
                 
-                Best regards,  
+                Best regards,
                 The MicroHubX Team
                 """;
 
