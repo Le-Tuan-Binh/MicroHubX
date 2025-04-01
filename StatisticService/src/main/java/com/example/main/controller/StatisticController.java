@@ -2,6 +2,8 @@ package com.example.main.controller;
 
 import com.example.main.dto.StatisticDTO;
 import com.example.main.service.implementation.StatisticService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
 @RequestMapping("/statistics")
 public class StatisticController {
     private final StatisticService statisticService;
+    Logger logger = LoggerFactory.getLogger(StatisticController.class);
 
     public StatisticController(StatisticService statisticService) {
         this.statisticService = statisticService;
@@ -22,6 +25,7 @@ public class StatisticController {
         } catch (Exception e) {
             e.printStackTrace();
         } */
+        logger.info("StatisticService -> StatisticController.addStatistic()");
         statisticService.addStatistic(statisticDTO);
         return statisticDTO;
     }

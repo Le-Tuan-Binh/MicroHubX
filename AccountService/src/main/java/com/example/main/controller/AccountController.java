@@ -6,6 +6,8 @@ import com.example.main.dto.AccountDTO;
 import com.example.main.dto.MessageDTO;
 import com.example.main.dto.StatisticDTO;
 import com.example.main.service.implementation.AccountService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ public class AccountController {
     private final AccountService accountService;
     private final IStatisticService statisticService;
     private final INotificationService notificationService;
+    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     public AccountController(AccountService accountService, IStatisticService statisticService, INotificationService notificationService) {
         this.accountService = accountService;
@@ -62,6 +65,7 @@ public class AccountController {
 
     @GetMapping
     public List<AccountDTO> getAccounts() {
+        logger.info("AccountService -> AccountController.getAccounts()");
         statisticService.addStatistic(new StatisticDTO("Get all accounts", new Date()));
         return accountService.findAll();
     }

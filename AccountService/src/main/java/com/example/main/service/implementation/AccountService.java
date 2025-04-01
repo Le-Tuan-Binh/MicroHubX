@@ -6,6 +6,8 @@ import com.example.main.repository.AccountRepository;
 import com.example.main.service.contract.IAccountService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.List;
 public class AccountService implements IAccountService {
     private final AccountRepository accountRepository;
     private final ModelMapper modelMapper;
+    private final Logger logger = LoggerFactory.getLogger(AccountService.class);
 
     public AccountService(AccountRepository accountRepository, ModelMapper modelMapper) {
         this.accountRepository = accountRepository;
@@ -61,6 +64,7 @@ public class AccountService implements IAccountService {
 
     @Override
     public List<AccountDTO> findAll() {
+        logger.info("AccountService -> AccountService.findAll()");
         List<AccountDTO> accountDTOs = new ArrayList<>();
         accountRepository.findAll().forEach((account) -> {
             accountDTOs.add(modelMapper.map(account, AccountDTO.class));
