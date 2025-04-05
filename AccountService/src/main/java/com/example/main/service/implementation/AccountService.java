@@ -5,9 +5,9 @@ import com.example.main.entity.Account;
 import com.example.main.repository.AccountRepository;
 import com.example.main.service.contract.IAccountService;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ public class AccountService implements IAccountService {
     @Override
     public void add(AccountDTO accountDTO) {
         Account account = modelMapper.map(accountDTO, Account.class);
+        account.setPassword(new BCryptPasswordEncoder().encode(accountDTO.getPassword()));
         accountRepository.save(account);
         accountDTO.setId(account.getId());
     }
@@ -36,12 +37,9 @@ public class AccountService implements IAccountService {
     public void update(AccountDTO accountDTO) {
         Account account = accountRepository.findById(accountDTO.getId()).get();
         if (account != null) {
-            modelMapper.addMappings(new PropertyMap<AccountDTO, Account>() {
-                @Override
-                protected void configure() {
-                    skip(destination.getPassword());
-                }
-            }).map(accountDTO, account);
+            modelMapper.typeMap(AccountDTO.class, Account.class)
+                    .addMappings(mapper -> mapper.skip(Account::setPassword))
+                    .map(accountDTO, account);
             accountRepository.save(account);
         }
     }
@@ -58,6 +56,7 @@ public class AccountService implements IAccountService {
     public void updatePassword(AccountDTO accountDTO) {
         Account account = accountRepository.findById(accountDTO.getId()).get();
         if (account != null) {
+            account.setPassword(new BCryptPasswordEncoder().encode(accountDTO.getPassword()));
             accountRepository.delete(account);
         }
     }

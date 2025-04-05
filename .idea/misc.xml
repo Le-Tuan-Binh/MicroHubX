@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/DiscoveryService/pom.xml" />
         <option value="$PROJECT_DIR$/GatewayService/pom.xml" />
         <option value="$PROJECT_DIR$/MonitorAdmin/pom.xml" />
+        <option value="$PROJECT_DIR$/AuthService/pom.xml" />
       </list>
     </option>
   </component>
